@@ -1,0 +1,24 @@
+// Colors
+$grey: #f5f5f5;
+$muted: hsl(0, 0%, 50%);
+$dark: #333333;
+$white: #ffffff;
+$accent1: #b5c8b8;
+$accent2: #e2bcb7;
+$accent3: #b8e2d8;
+
+// Tints
+$accent1-lightest: lighten($accent1, 20%);
+$accent1-lighter: lighten($accent1, 10%);
+$accent2-lightest: lighten($accent2, 20%);
+$accent2-lighter: lighten($accent2, 10%);
+$accent3-lightest: lighten($accent3, 20%);
+$accent3-lighter: lighten($accent3, 10%);
+
+// Shades
+$accent1-darkest: darken($accent1, 20%);
+$accent1-darker: darken($accent1, 10%);
+$accent2-darkest: darken($accent2, 20%);
+$accent2-darker: darken($accent2, 10%);
+$accent3-darkest: darken($accent3, 20%);
+$accent3-darker: darken($accent3, 10%);
