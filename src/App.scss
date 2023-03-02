@@ -1,29 +1,38 @@
 @import "./styles/colors";
 @import "./styles/typography";
+@import "./styles/variables";
 
 .app {
-	background-color: $grey;
+	background-color: $light;
+	color: $darkest;
 	min-height: 100vh;
 
 	.main-content {
-		margin-left: 275px; /* The width of the sidebar */
-	}
-	.header {
-		margin-left: 275px; /* The width of the sidebar */
+		margin-left: $sidebar-width;
+		min-height: calc(100vh - $header-height);
+		overflow: hidden;
 	}
 
-	.main-content.opaque {
-		position: relative;
+	.header {
+		margin-left: $sidebar-width;
+	}
+
+	.backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 1;
+		transition: opacity 14s ease-in-out;
 		z-index: 1;
+		background-color: rgba(0, 0, 0, 0.5);
+
 		&:before {
+			z-index: 1;
 			content: "";
 			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.5);
-			z-index: -1;
+			opacity: 0;
 		}
 	}
 

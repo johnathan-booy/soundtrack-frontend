@@ -1,35 +1,37 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "./navigation/Sidebar";
-import Routes from "./navigation/Routes";
-import Header from "./navigation/Header";
 import useWindowSize from "./hooks/useWindowSize";
+import Header from "./navigation/Header";
+import Routes from "./navigation/Routes";
+import Sidebar from "./navigation/Sidebar";
 import "./App.scss";
 
 function App() {
+	/** Sidebar	- open on larger window sizes, collapsible otherwise */
 	const { width } = useWindowSize();
-
-	const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 	useEffect(() => {
-		if (width >= 1024 && !sidebarIsOpen) {
-			setSidebarIsOpen(true);
+		if (width >= 960 && !isSidebarOpen) {
+			setIsSidebarOpen(true);
 		}
-	}, [width, sidebarIsOpen]);
+	}, [width, isSidebarOpen]);
 
-	const isSidebarOpen = sidebarIsOpen && width < 1024;
+	const canSidebarCollapse = isSidebarOpen && width < 960;
 
 	const toggleSidebar = () => {
-		setSidebarIsOpen(!sidebarIsOpen);
+		setIsSidebarOpen(!isSidebarOpen);
 	};
+
+	/** Teacher authentication */
 
 	return (
 		<div className="app">
 			<Header toggleSidebar={toggleSidebar} />
-			<Sidebar sidebarIsOpen={sidebarIsOpen} />
-			<main
-				className={`main-content${isSidebarOpen ? " opaque" : ""}`}
-				onClick={isSidebarOpen ? toggleSidebar : null}
-			>
+			<Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+			{canSidebarCollapse && (
+				<div className="backdrop" onClick={toggleSidebar}></div>
+			)}
+			<main className={`main-content`}>
 				<Routes />
 			</main>
 		</div>

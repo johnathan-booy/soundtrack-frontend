@@ -2,65 +2,59 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faUser,
-	faBook,
-	faSignInAlt,
-	faSignOutAlt,
 	faUserPlus,
 	faEdit,
 	faSignOut,
 	faSignIn,
-	faUsers,
 	faUserFriends,
-	faChalkboard,
 	faClipboard,
-	faFile,
-	faFileAlt,
-	faSchool,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.scss";
 
-const Sidebar = ({ sidebarIsOpen }) => {
-	const style = !sidebarIsOpen
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+	const style = isSidebarOpen
 		? {
-				width: "0",
+				left: "0",
+				boxShadow: "2px 0 5px rgba(0, 0, 0, 0.2)",
 		  }
 		: {};
 	return (
 		<nav className="sidebar" style={style}>
-			<ul>
+			<ul className="sidebar-top">
 				<li>
-					<NavLink to="/students">
+					<NavLink to="/students" onClick={toggleSidebar}>
 						<FontAwesomeIcon icon={faUserFriends} />
 						<span>Students</span>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/lessons">
+					<NavLink to="/lessons" onClick={toggleSidebar}>
 						<FontAwesomeIcon icon={faClipboard} />
 						<span>Lessons</span>
 					</NavLink>
 				</li>
+			</ul>
+			<ul className="sidebar-bottom">
 				<li>
-					<NavLink to="/login">
+					<NavLink to="/login" onClick={toggleSidebar}>
 						<FontAwesomeIcon icon={faSignIn} />
 						<span>Login</span>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/logout">
+					<NavLink to="/logout" onClick={toggleSidebar}>
 						<FontAwesomeIcon icon={faSignOut} />
 						<span>Logout</span>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/register">
+					<NavLink to="/register" onClick={toggleSidebar}>
 						<FontAwesomeIcon icon={faUserPlus} />
 						<span>Register</span>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/update">
+					<NavLink to="/update" onClick={toggleSidebar}>
 						<FontAwesomeIcon icon={faEdit} />
 						<span>Update</span>
 					</NavLink>
