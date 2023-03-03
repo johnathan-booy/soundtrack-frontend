@@ -1,0 +1,63 @@
+@import "../styles/colors";
+@import "../styles/variables";
+
+.Form-wrapper {
+	header {
+		text-align: center;
+		margin-bottom: 1em;
+
+		h1 {
+			margin-bottom: 0.1em;
+			font-size: 2em;
+		}
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 80%;
+		min-width: 300px;
+		max-width: 800px;
+		margin: auto;
+		padding: 20px;
+		border-radius: $border-radius;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		background-color: white;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 10px;
+		width: 100%;
+
+		.form-label {
+			font-weight: 600;
+			font-size: 1.1em;
+			margin-bottom: 5px;
+		}
+
+		.form-input {
+			padding: 10px;
+			font-size: 1.2em;
+			border-radius: 5px;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+
+			&:focus {
+				outline: none; /* remove the default focus outline */
+				border-color: $accent; /* change the border color on focus */
+				box-shadow: $accent-alpha 0px 7px 29px 0px;
+			}
+		}
+
+		.form-error {
+			color: $error;
+			font-size: 0.9em;
+			margin-top: 3px;
+		}
+	}
+}
+
+$primary-color: #5ee3cd;
+$primary-color-alpha: #5ee3cd40;
