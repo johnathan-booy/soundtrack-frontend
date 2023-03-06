@@ -8,10 +8,14 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import Api from "./api";
 import { useHistory } from "react-router-dom";
 import TeacherContext from "./contexts/TeacherContext";
-import FlashContext from "./contexts/FlashContext";
+import useFlashMessages from "./hooks/useFlashMessages";
+import FlashMessages from "./flashMessages/FlashMessages";
 
 function App() {
-	// Get the `history` object from `useHistory` hook
+	/** useFlashMessages to display user warnings */
+	const [flashMessages, addFlashMessage] = useFlashMessages(4000);
+
+	/** History object, to dynamically redirect the user */
 	const history = useHistory();
 
 	/** Sidebar	- open on larger window sizes, collapsible otherwise */
@@ -41,7 +45,8 @@ function App() {
 		const loadTeacherInfo = async () => {
 			if (storedToken && storedTeacherId) {
 				Api.setToken(storedToken);
-				const teacher = Api.getTeacher(storedTeacherId);
+				const teacher = await Api.getTeacher(storedTeacherId);
+				addFlashMessage("success", `👋 Welcome back ${teacher.name}!`);
 				setCurrentTeacher(teacher);
 			} else {
 				setCurrentTeacher(null);
@@ -63,11 +68,13 @@ function App() {
 			const { token, teacherId } = await Api.login(email, password);
 			updateCredentials(teacherId, token);
 			history.push("/");
-		} catch (err) {}
+		} catch (err) {
+			addFlashMessage("danger", err);
+		}
 	};
 	const logout = () => {
 		updateCredentials();
-		// addFlashMessage("success", `See you later!`);
+		addFlashMessage("success", `👋 See you later!`);
 		history.push("/");
 	};
 
@@ -83,11 +90,10 @@ function App() {
 				{canSidebarCollapse && (
 					<div className="backdrop" onClick={toggleSidebar}></div>
 				)}
-				<FlashContext.Provider>
-					<main className={`main-content`}>
-						<Routes />
-					</main>
-				</FlashContext.Provider>
+				<main className={`main-content`}>
+					<FlashMessages flashMessages={flashMessages} />
+					<Routes />
+				</main>
 			</TeacherContext.Provider>
 		</div>
 	);

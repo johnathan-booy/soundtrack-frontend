@@ -1,0 +1,22 @@
+@import "../styles/colors";
+
+.flash-message {
+	padding: 10px;
+	border-radius: 14px;
+	margin: 10px auto 10px auto;
+	width: 50%;
+	min-width: 300px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 1.1em;
+}
+
+.flash-message.success {
+	box-shadow: $accent-alpha 0px 7px 29px 0px;
+	background-color: $accent-alpha;
+}
+
+.flash-message.danger {
+	box-shadow: $error 0px 7px 29px 0px;
+	background-color: $error-alpha;
+}

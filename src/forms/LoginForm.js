@@ -8,8 +8,8 @@ function LoginForm() {
 	const { login } = useContext(TeacherContext);
 
 	const fields = FormFields.getFields([
-		{ name: "email", value: "" },
-		{ name: "password", value: "" },
+		{ name: "email", value: "johnathan.booy@gmail.com" },
+		{ name: "password", value: "password" },
 	]);
 
 	const onSubmit = async (values) => {
@@ -22,7 +22,7 @@ function LoginForm() {
 			<header>
 				<h1>Login</h1>
 				<em>
-					Don't have an account? <Link to="/signup">Sign Up!</Link>
+					Don't have an account? <Link to="/register">Register here!</Link>
 				</em>
 			</header>
 			<GenericForm fields={fields} onSubmit={onSubmit} />

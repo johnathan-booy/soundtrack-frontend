@@ -1,7 +1,12 @@
 $default-font-family: "PT Sans", sans-serif;
 $heading-font-family: "Nunito", sans-serif;
 
-body {
+body,
+button,
+a,
+div,
+nav,
+em {
 	font-family: $default-font-family;
 }
 

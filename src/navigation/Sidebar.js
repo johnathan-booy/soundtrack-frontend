@@ -20,6 +20,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, logout }) => {
 				boxShadow: "2px 0 5px rgba(0, 0, 0, 0.2)",
 		  }
 		: {};
+
+	const handleLogoutClick = (e) => {
+		logout();
+		toggleSidebar();
+	};
 	return (
 		<nav className="sidebar" style={style}>
 			{currentTeacher ? (
@@ -27,8 +32,10 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, logout }) => {
 					<ul className="sidebar-top">
 						<li>
 							<NavLink to="/students" onClick={toggleSidebar}>
-								<FontAwesomeIcon icon={faUserFriends} />
-								<span>Students</span>
+								<div>
+									<FontAwesomeIcon icon={faUserFriends} />
+									<span>Students</span>
+								</div>
 							</NavLink>
 						</li>
 						<li>
@@ -46,7 +53,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, logout }) => {
 							</NavLink>
 						</li>
 						<li>
-							<Link to="/" onClick={logout}>
+							<Link to="/" onClick={handleLogoutClick}>
 								<FontAwesomeIcon icon={faSignOut} />
 								<span>Logout</span>
 							</Link>

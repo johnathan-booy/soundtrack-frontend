@@ -33,7 +33,7 @@ function GenericForm({ fields, onSubmit }) {
 						</div>
 					);
 				})}
-				<button className="App-button success" type="submit">
+				<button className="form-button" type="submit">
 					Submit
 				</button>
 			</Form>

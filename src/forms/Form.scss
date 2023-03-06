@@ -46,7 +46,7 @@
 
 			&:focus {
 				outline: none; /* remove the default focus outline */
-				border-color: $accent; /* change the border color on focus */
+				border-color: $accent;
 				box-shadow: $accent-alpha 0px 7px 29px 0px;
 			}
 		}
@@ -57,7 +57,30 @@
 			margin-top: 3px;
 		}
 	}
-}
 
-$primary-color: #5ee3cd;
-$primary-color-alpha: #5ee3cd40;
+	.form-button {
+		display: inline-block;
+		text-align: center;
+		margin: 5px;
+		padding: 8px 22px;
+		background-color: $accent;
+		color: $white;
+		text-decoration: none;
+		font-size: 1.1em;
+		font-weight: bold;
+		border-radius: $border-radius;
+		border: none;
+		transition: all 0.2s ease-in-out;
+
+		&:hover {
+			background-color: darken($accent, 12%);
+			color: $white;
+			cursor: pointer;
+		}
+
+		&:active {
+			background-color: darken($accent, 6%);
+			transform: translateY(1.5px);
+		}
+	}
+}
