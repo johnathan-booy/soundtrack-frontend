@@ -26,7 +26,7 @@
 		opacity: 1;
 		transition: opacity 14s ease-in-out;
 		z-index: 1;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba($accent-dark, 0.5);
 
 		&:before {
 			z-index: 1;

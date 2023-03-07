@@ -43,6 +43,16 @@ class Api {
 		const res = await this.request(`teachers/${id}`);
 		return res.teacher;
 	}
+
+	static async updateTeacher({ id, name, email, description = null }) {
+		const res = await this.request(
+			`teachers/${id}`,
+			{ name, email, description },
+			"patch"
+		);
+		console.log(res.teacher);
+		return res.teacher;
+	}
 }
 
 // For now, hard-code a token

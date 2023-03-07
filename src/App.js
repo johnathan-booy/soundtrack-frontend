@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
+import TeacherContext from "./contexts/TeacherContext";
+import useFlashMessages from "./hooks/useFlashMessages";
+import { useHistory } from "react-router-dom";
+import useLocalStorage from "./hooks/useLocalStorage";
 import useWindowSize from "./hooks/useWindowSize";
+import FlashMessages from "./flashMessages/FlashMessages";
 import Header from "./navigation/Header";
 import Routes from "./navigation/Routes";
 import Sidebar from "./navigation/Sidebar";
-import "./App.scss";
-import useLocalStorage from "./hooks/useLocalStorage";
 import Api from "./api";
-import { useHistory } from "react-router-dom";
-import TeacherContext from "./contexts/TeacherContext";
-import useFlashMessages from "./hooks/useFlashMessages";
-import FlashMessages from "./flashMessages/FlashMessages";
+import "./App.scss";
 
 function App() {
 	/** useFlashMessages to display user warnings */
@@ -34,7 +34,7 @@ function App() {
 		setIsSidebarOpen(!isSidebarOpen);
 	};
 
-	/** Teacher authentication */
+	/** Teacher authentication variables */
 	const [currentTeacher, setCurrentTeacher] = useState(null);
 	const [teacherLoaded, setTeacherLoaded] = useState(false);
 	const [storedToken, setStoredToken] = useLocalStorage("authToken");
@@ -56,24 +56,26 @@ function App() {
 		loadTeacherInfo();
 	}, [storedTeacherId, storedToken]);
 
+	/** Update authentication credentials */
 	const updateCredentials = (teacherId = null, token = null) => {
 		Api.setToken(token);
 		setStoredToken(token);
 		setStoredTeacherId(teacherId);
 	};
 
+	/** Log in an existing teacher */
 	const login = async ({ email, password }) => {
 		try {
 			const { token, teacherId } = await Api.login({ email, password });
 			updateCredentials(teacherId, token);
 			addFlashMessage("success", `👋 Welcome back!`);
-
 			history.push("/");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
 	};
 
+	/** Register a new teaacher */
 	const register = async ({ name, email, password, description }) => {
 		try {
 			const { token, teacherId } = await Api.register({
@@ -83,7 +85,6 @@ function App() {
 				description,
 			});
 			addFlashMessage("success", `👋 Welcome to SoundTrack Academy!`);
-
 			updateCredentials(teacherId, token);
 			history.push("/");
 		} catch (err) {
@@ -91,6 +92,24 @@ function App() {
 		}
 	};
 
+	/** Update logged in teacher */
+	const updateTeacher = async ({ name, email, description }) => {
+		try {
+			const teacher = await Api.updateTeacher({
+				id: storedTeacherId,
+				name,
+				email,
+				description,
+			});
+			addFlashMessage("success", `✅ Your profile has been updated!`);
+			setCurrentTeacher(teacher);
+			history.push("/");
+		} catch (err) {
+			addFlashMessage("danger", err);
+		}
+	};
+
+	/** Log out currentTeacher */
 	const logout = () => {
 		updateCredentials();
 		addFlashMessage("success", `👋 See you later!`);
@@ -99,18 +118,31 @@ function App() {
 
 	return (
 		<div className="app">
-			<TeacherContext.Provider value={{ login, register, currentTeacher }}>
+			{/* Teacher Context */}
+			<TeacherContext.Provider
+				value={{ login, register, updateTeacher, currentTeacher }}
+			>
+				{/* Header */}
 				<Header toggleSidebar={toggleSidebar} />
+
+				{/* Sidebar */}
 				<Sidebar
 					isSidebarOpen={isSidebarOpen}
 					toggleSidebar={toggleSidebar}
 					logout={logout}
 				/>
+
+				{/* Backdrop, covers main-content if sidebar is open and collapsible */}
 				{canSidebarCollapse && (
 					<div className="backdrop" onClick={toggleSidebar}></div>
 				)}
+
+				{/* Main Content */}
 				<main className={`main-content`}>
+					{/* Flash Messages */}
 					<FlashMessages flashMessages={flashMessages} />
+
+					{/* Routes */}
 					<Routes />
 				</main>
 			</TeacherContext.Provider>

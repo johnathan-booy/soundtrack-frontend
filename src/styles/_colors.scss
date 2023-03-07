@@ -1,9 +1,10 @@
-$accent: hsl(186, 38%, 48%);
-$darkest: hsl(188, 20%, 9%);
-$dark: hsl(188, 15%, 22%);
+$accent: hsl(188, 38%, 50%);
+$accent-dark: hsl(188, 40%, 30%);
+$darkest: hsl(188, 40%, 9%);
+$dark: hsl(188, 20%, 22%);
 $neutral: hsl(188, 10%, 75%);
-$light: hsl(188, 25%, 94%);
-$white: hsl(188, 2%, 99%);
-$error: hsl(3, 42%, 52%);
+$light: hsl(188, 20%, 94%);
+$white: hsl(188, 40%, 99%);
+$error: hsl(3, 38%, 50%);
 $accent-alpha: rgba($accent, 0.3);
 $error-alpha: rgba($error, 0.3); ;
