@@ -1,7 +1,7 @@
 @import "../styles/colors";
 @import "../styles/variables";
 
-.Form-wrapper {
+.form-wrapper {
 	header {
 		text-align: center;
 		margin-bottom: 1em;
@@ -41,7 +41,7 @@
 		.form-input {
 			padding: 10px;
 			font-size: 1.2em;
-			border-radius: 5px;
+			border-radius: $border-radius;
 			border: 1px solid rgba(0, 0, 0, 0.1);
 
 			&:focus {
@@ -49,6 +49,10 @@
 				border-color: $accent;
 				box-shadow: $accent-alpha 0px 7px 29px 0px;
 			}
+		}
+
+		.form-input.form-textarea {
+			height: 180px;
 		}
 
 		.form-error {

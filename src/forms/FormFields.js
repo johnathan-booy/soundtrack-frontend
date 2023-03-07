@@ -38,6 +38,16 @@ class FormFields {
 	 */
 	static fields = [
 		{
+			name: "name",
+			label: "Name",
+			type: "text",
+			initialValue: "",
+			validation: Yup.string()
+				.min(2, "Name must be at least 2 characters long")
+				.max(50, "Name must be at most 50 characters long")
+				.required("Name is required"),
+		},
+		{
 			name: "email",
 			label: "Email",
 			type: "email",
@@ -56,14 +66,11 @@ class FormFields {
 				.required("Password is required"),
 		},
 		{
-			name: "name",
-			label: "Name",
-			type: "text",
+			name: "description",
+			label: "Description",
+			type: "textarea",
 			initialValue: "",
-			validation: Yup.string()
-				.min(2, "Name must be at least 2 characters long")
-				.max(50, "Name must be at most 50 characters long")
-				.required("Name is required"),
+			validation: Yup.string(),
 		},
 	];
 }

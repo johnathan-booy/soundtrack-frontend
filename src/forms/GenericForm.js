@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./Form.scss";
 
-function GenericForm({ fields, onSubmit }) {
+function GenericForm({ fields, handleSubmit, submitName }) {
 	const initialValues = Object.fromEntries(
 		fields.map((field) => [field.name, field.initialValue])
 	);
@@ -16,7 +16,7 @@ function GenericForm({ fields, onSubmit }) {
 		<Formik
 			initialValues={initialValues}
 			validationSchema={validationSchema}
-			onSubmit={onSubmit}
+			onSubmit={handleSubmit}
 		>
 			<Form className="form">
 				{fields.map((field) => {
@@ -26,15 +26,23 @@ function GenericForm({ fields, onSubmit }) {
 							<label className="form-label" htmlFor={name}>
 								{label}
 							</label>
-							<Field className="form-input" type={type} name={name} />
+							<Field
+								className={`form-input${
+									type === "textarea" ? " form-textarea" : ""
+								}`}
+								name={name}
+								as={type === "textarea" ? "textarea" : "input"}
+								type={type}
+							/>
 							<div className="form-error">
 								<ErrorMessage name={name} />
 							</div>
 						</div>
 					);
 				})}
+
 				<button className="form-button" type="submit">
-					Submit
+					{submitName}
 				</button>
 			</Form>
 		</Formik>

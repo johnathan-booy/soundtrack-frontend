@@ -24,8 +24,17 @@ class Api {
 	}
 
 	/** Authorizaiton */
-	static async login(email, password) {
+	static async login({ email, password }) {
 		const res = await this.request("auth/login", { email, password }, "post");
+		return res;
+	}
+
+	static async register({ name, email, password, description = null }) {
+		const res = await this.request(
+			"auth/register",
+			{ name, email, password, description },
+			"post"
+		);
 		return res;
 	}
 

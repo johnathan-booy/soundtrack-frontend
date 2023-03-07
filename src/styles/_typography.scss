@@ -6,7 +6,9 @@ button,
 a,
 div,
 nav,
-em {
+em,
+textarea {
+	font-size: 1em;
 	font-family: $default-font-family;
 }
 

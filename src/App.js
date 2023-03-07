@@ -46,7 +46,6 @@ function App() {
 			if (storedToken && storedTeacherId) {
 				Api.setToken(storedToken);
 				const teacher = await Api.getTeacher(storedTeacherId);
-				addFlashMessage("success", `👋 Welcome back ${teacher.name}!`);
 				setCurrentTeacher(teacher);
 			} else {
 				setCurrentTeacher(null);
@@ -63,15 +62,35 @@ function App() {
 		setStoredTeacherId(teacherId);
 	};
 
-	const login = async (email, password) => {
+	const login = async ({ email, password }) => {
 		try {
-			const { token, teacherId } = await Api.login(email, password);
+			const { token, teacherId } = await Api.login({ email, password });
+			updateCredentials(teacherId, token);
+			addFlashMessage("success", `👋 Welcome back!`);
+
+			history.push("/");
+		} catch (err) {
+			addFlashMessage("danger", err);
+		}
+	};
+
+	const register = async ({ name, email, password, description }) => {
+		try {
+			const { token, teacherId } = await Api.register({
+				name,
+				email,
+				password,
+				description,
+			});
+			addFlashMessage("success", `👋 Welcome to SoundTrack Academy!`);
+
 			updateCredentials(teacherId, token);
 			history.push("/");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
 	};
+
 	const logout = () => {
 		updateCredentials();
 		addFlashMessage("success", `👋 See you later!`);
@@ -80,7 +99,7 @@ function App() {
 
 	return (
 		<div className="app">
-			<TeacherContext.Provider value={{ login, currentTeacher }}>
+			<TeacherContext.Provider value={{ login, register, currentTeacher }}>
 				<Header toggleSidebar={toggleSidebar} />
 				<Sidebar
 					isSidebarOpen={isSidebarOpen}
