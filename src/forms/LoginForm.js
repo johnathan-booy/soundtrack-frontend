@@ -10,7 +10,7 @@ function LoginForm() {
 
 	// Define the form fields with default values
 	const fields = FormFields.getFields([
-		{ name: "email", value: "johnathan.booy@gmail.com" },
+		{ name: "email", value: "johndoe@example.com" },
 		{ name: "password", value: "password" },
 	]);
 

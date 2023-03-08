@@ -1,11 +1,9 @@
 @import "../styles/colors";
 @import "../styles/variables";
+@import "../styles/mixins";
 
 .header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: $white;
+	@include flex(row, space-between, center);
 	height: $header-height;
 	padding: 0 20px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -19,9 +17,7 @@
 }
 
 .sidebar-toggle {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	@include flex(column, space-between);
 	width: 24px;
 	height: 18px;
 	background-color: transparent;

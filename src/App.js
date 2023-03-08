@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TeacherContext from "./contexts/TeacherContext";
+import FlashContext from "./contexts/FlashContext";
 import useFlashMessages from "./hooks/useFlashMessages";
 import { useHistory } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -137,14 +138,17 @@ function App() {
 					<div className="backdrop" onClick={toggleSidebar}></div>
 				)}
 
-				{/* Main Content */}
-				<main className={`main-content`}>
-					{/* Flash Messages */}
-					<FlashMessages flashMessages={flashMessages} />
+				{/* Flash Context */}
+				<FlashContext.Provider value={{ flashMessages, addFlashMessage }}>
+					{/* Main Content */}
+					<main className={`main-content`}>
+						{/* Flash Messages */}
+						<FlashMessages />
 
-					{/* Routes */}
-					<Routes />
-				</main>
+						{/* Routes */}
+						<Routes />
+					</main>
+				</FlashContext.Provider>
 			</TeacherContext.Provider>
 		</div>
 	);

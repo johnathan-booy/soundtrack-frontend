@@ -24,11 +24,14 @@ class Api {
 	}
 
 	/** Authorizaiton */
+
+	/** Login a teacher */
 	static async login({ email, password }) {
 		const res = await this.request("auth/login", { email, password }, "post");
 		return res;
 	}
 
+	/** Register a new teacher */
 	static async register({ name, email, password, description = null }) {
 		const res = await this.request(
 			"auth/register",
@@ -39,24 +42,32 @@ class Api {
 	}
 
 	/** Teachers */
+
+	/** Get information about a teacher by id */
 	static async getTeacher(id) {
 		const res = await this.request(`teachers/${id}`);
 		return res.teacher;
 	}
 
+	/** Update a teacher's profile */
 	static async updateTeacher({ id, name, email, description = null }) {
 		const res = await this.request(
 			`teachers/${id}`,
 			{ name, email, description },
 			"patch"
 		);
-		console.log(res.teacher);
 		return res.teacher;
 	}
-}
 
-// For now, hard-code a token
-Api.token =
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzcyNzUzOTl9.aAjIfaspEq1j-t7i8jHUCcWb1F2i8B_Z8WMYzbyvOB0";
+	/** Students */
+
+	/** Get all students that are assigned to a teacherId */
+	static async getStudents({ teacherId, name = null }) {
+		const searchFilters = { teacherId };
+		if (name !== null) searchFilters.name = name;
+		const res = await this.request(`students`, searchFilters);
+		return res.students;
+	}
+}
 
 export default Api;

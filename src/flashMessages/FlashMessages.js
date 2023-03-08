@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { v4 as uuid } from "uuid";
+import FlashContext from "../contexts/FlashContext";
 import "./FlashMessages.scss";
 
-function FlashMessages({ flashMessages }) {
+function FlashMessages() {
+	const { flashMessages } = useContext(FlashContext);
 	return (
 		<div className="flash-messages">
 			{flashMessages.map((flash) => (

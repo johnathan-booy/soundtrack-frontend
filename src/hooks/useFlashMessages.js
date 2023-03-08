@@ -24,6 +24,7 @@ function useFlashMessages(timeout = 3000) {
 			...prevFlashMessages,
 			{ type, message },
 		]);
+
 		setTimeout(() => {
 			setFlashMessages((prevFlashMessages) =>
 				prevFlashMessages.filter(

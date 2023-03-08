@@ -8,6 +8,7 @@ import Homepage from "../homepage/Homepage";
 import LessonDetails from "../lessons/LessonDetails";
 import StudentDetails from "../students/StudentDetails";
 import StudentList from "../students/StudentList";
+import PrivateRoute from "./PrivateRoute";
 
 function Routes() {
 	return (
@@ -15,27 +16,27 @@ function Routes() {
 			<Route exact path="/">
 				<Homepage />
 			</Route>
-			<Route exact path="/students">
+			<PrivateRoute exact path="/students">
 				<StudentList />
-			</Route>
-			<Route exact path="/students/add">
+			</PrivateRoute>
+			<PrivateRoute exact path="/students/add">
 				<AddStudentForm />
-			</Route>
-			<Route path="/students/:studentId">
+			</PrivateRoute>
+			<PrivateRoute path="/students/:studentId">
 				<StudentDetails />
-			</Route>
-			<Route path="/lessons/:lessonId">
+			</PrivateRoute>
+			<PrivateRoute path="/lessons/:lessonId">
 				<LessonDetails />
-			</Route>
+			</PrivateRoute>
 			<Route exact path="/login">
 				<LoginForm />
 			</Route>
 			<Route exact path="/register">
 				<RegisterForm />
 			</Route>
-			<Route exact path="/update">
+			<PrivateRoute exact path="/update">
 				<UpdateProfileForm />
-			</Route>
+			</PrivateRoute>
 			<Redirect to="/" />
 		</Switch>
 	);

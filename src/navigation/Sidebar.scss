@@ -13,10 +13,7 @@
 	overflow-x: hidden;
 	transition: 0.6s;
 	padding: 60px 0px 40px 0px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+	@include flex(column, space-between, center);
 
 	ul {
 		margin: 0;
@@ -28,9 +25,7 @@
 	}
 
 	a {
-		display: flex;
-		justify-content: left;
-		align-items: center;
+		@include flex(row, flex-start, center);
 		padding-left: 18px;
 		margin: 5px;
 		color: $dark;
