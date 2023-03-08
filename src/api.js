@@ -62,9 +62,9 @@ class Api {
 	/** Students */
 
 	/** Get all students that are assigned to a teacherId */
-	static async getStudents({ teacherId, name = null }) {
+	static async getStudents({ teacherId, name = "" }) {
 		const searchFilters = { teacherId };
-		if (name !== null) searchFilters.name = name;
+		if (name !== "") searchFilters.name = name;
 		const res = await this.request(`students`, searchFilters);
 		return res.students;
 	}

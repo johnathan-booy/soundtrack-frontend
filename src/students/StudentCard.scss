@@ -1,0 +1,49 @@
+// Import dependencies
+@import "../styles/colors";
+@import "../styles/mixins";
+@import "../styles/typography";
+@import "../styles/variables";
+
+// Define styles for .student-card element
+.student-card {
+	// Include mixins
+	@include tile;
+	@include container($base-width: 80%, $tablet-width: 90%, $max-width: 600px);
+	@include flex(column);
+
+	// Define grid layout for larger screens
+	@media (min-width: 600px) {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr 0.5fr;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	// Define text styles
+	color: $darkest;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+
+	// Define hover styles
+	&:hover {
+		background-color: $accent-light;
+	}
+
+	// Define styles for child elements
+	.name {
+		font-family: $heading-font-family;
+		font-weight: bold;
+		font-size: 1.1em;
+	}
+
+	.email {
+		font-style: italic;
+	}
+
+	// Define alignment for skill element on larger screens
+	@media (min-width: 600px) {
+		.skill {
+			text-align: end;
+		}
+	}
+}

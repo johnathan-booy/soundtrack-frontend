@@ -1,0 +1,9 @@
+@import "../styles/colors";
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.student-search-form {
+	@include container($base-width: 80%, $tablet-width: 90%, $max-width: 600px);
+	margin-bottom: 20px;
+	box-shadow: $subtle-box-shadow;
+}

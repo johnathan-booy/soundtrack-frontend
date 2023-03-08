@@ -12,79 +12,75 @@
 			font-size: 2em;
 		}
 	}
-
 	.form {
 		@include flex(column, center, center);
-		width: 80%;
-		min-width: 300px;
-		max-width: 800px;
-		margin: auto;
+		@include container;
 		@include tile;
 	}
+}
 
-	.form-group {
-		@include flex(column, center, flex-start);
-		margin-bottom: 10px;
+.form-button {
+	display: inline-block;
+	text-align: center;
+	margin: 5px;
+	padding: 8px 22px;
+	background-color: $accent;
+	color: $white;
+	text-decoration: none;
+	font-size: 1.1em;
+	font-weight: bold;
+	border-radius: $border-radius;
+	border: none;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		background-color: darken($accent, 12%);
+		color: $white;
+		cursor: pointer;
+	}
+
+	&:active {
+		background-color: darken($accent, 6%);
+		transform: translateY(1.5px);
+	}
+}
+
+.form-group {
+	@include flex(column, center, flex-start);
+	margin-bottom: 10px;
+	width: 100%;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	.form-label {
+		font-weight: 600;
+		font-size: 1.1em;
+		margin-bottom: 5px;
+	}
+
+	.form-input {
 		width: 100%;
+		padding: 10px;
+		font-size: 1.2em;
+		border-radius: $border-radius;
+		border: 1px solid rgba(0, 0, 0, 0.1);
 
-		&:last-child {
-			margin-bottom: 0;
-		}
-
-		.form-label {
-			font-weight: 600;
-			font-size: 1.1em;
-			margin-bottom: 5px;
-		}
-
-		.form-input {
-			width: 100%;
-			padding: 10px;
-			font-size: 1.2em;
-			border-radius: $border-radius;
-			border: 1px solid rgba(0, 0, 0, 0.1);
-
-			&:focus {
-				outline: none; /* remove the default focus outline */
-				border-color: $accent;
-				box-shadow: $accent-alpha 0px 7px 29px 0px;
-			}
-		}
-
-		.form-input.form-textarea {
-			height: 180px;
-		}
-
-		.form-error {
-			color: $error;
-			font-size: 0.9em;
-			margin-top: 3px;
+		&:focus {
+			outline: none; /* remove the default focus outline */
+			border-color: $accent;
+			box-shadow: $accent-alpha 0px 7px 29px 0px;
 		}
 	}
 
-	.form-button {
-		display: inline-block;
-		text-align: center;
-		margin: 5px;
-		padding: 8px 22px;
-		background-color: $accent;
-		color: $white;
-		text-decoration: none;
-		font-size: 1.1em;
-		font-weight: bold;
-		border-radius: $border-radius;
-		border: none;
-		transition: all 0.2s ease-in-out;
+	.form-input.form-textarea {
+		height: 180px;
+	}
 
-		&:hover {
-			background-color: darken($accent, 12%);
-			color: $white;
-			cursor: pointer;
-		}
-
-		&:active {
-			background-color: darken($accent, 6%);
-			transform: translateY(1.5px);
-		}
+	.form-error {
+		color: $error;
+		font-size: 0.9em;
+		margin-top: 3px;
 	}
 }

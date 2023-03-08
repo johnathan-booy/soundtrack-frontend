@@ -33,7 +33,7 @@
 	background-color: $darkest;
 }
 
-@media (min-width: 960px) {
+@media (min-width: $laptop-width) {
 	.sidebar-toggle {
 		display: none;
 	}

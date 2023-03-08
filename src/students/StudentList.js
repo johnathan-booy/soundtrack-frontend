@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import Api from "../api";
 import TeacherContext from "../contexts/TeacherContext";
 import StudentSearchForm from "../forms/StudentSearchForm";
+import StudentCard from "./StudentCard";
+import "./StudentList.scss";
 
 function StudentList() {
 	const [students, setStudents] = useState([]);
 	const [areStudentsLoaded, setAreStudentsLoaded] = useState(false);
-	const [name, setName] = useState(null);
+	const [name, setName] = useState("");
 	const { currentTeacher } = useContext(TeacherContext);
 
 	useEffect(() => {
@@ -26,14 +28,14 @@ function StudentList() {
 		<div className="student-list">
 			<StudentSearchForm searchByName={searchByName} />
 
-			{students.map((student) => (
-				<div className="student-card">
-					<h3>{student.name}</h3>
-					<p>
-						<i>{student.skillLevel}</i>
-					</p>
-					<p>{student.description}</p>
-				</div>
+			{students.map(({ id, name, email, skillLevel }) => (
+				<StudentCard
+					key={id}
+					id={id}
+					name={name}
+					email={email}
+					skillLevel={skillLevel}
+				/>
 			))}
 		</div>
 	);

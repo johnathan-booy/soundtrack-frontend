@@ -3,7 +3,7 @@
 @import "./styles/variables";
 
 .app {
-	background-color: $light;
+	background-color: $lighter;
 	color: $darkest;
 	min-height: 100vh;
 
@@ -37,7 +37,7 @@
 		}
 	}
 
-	@media (max-width: 1023px) {
+	@media (max-width: $laptop-width) {
 		.main-content {
 			margin-left: 0;
 		}

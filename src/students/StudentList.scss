@@ -1,0 +1,11 @@
+// Import dependencies
+@import "../styles/colors";
+@import "../styles/mixins";
+@import "../styles/typography";
+@import "../styles/variables";
+
+.student-list {
+	a {
+		margin-bottom: 10px;
+	}
+}
