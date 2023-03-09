@@ -1,0 +1,75 @@
+@import "../styles/mixins";
+
+.student-details {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+
+	header {
+		margin-bottom: 20px;
+
+		h1 {
+			font-size: 36px;
+			font-weight: bold;
+			margin: 0;
+		}
+	}
+
+	.description,
+	.contact {
+		margin-bottom: 20px;
+		@include tile;
+
+		h3 {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		p {
+			margin: 0;
+			cursor: pointer;
+			position: relative;
+
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 2px;
+				background-color: #6b7c93;
+				transform: scaleX(0);
+				transform-origin: bottom;
+				transition: transform 0.3s ease-in-out;
+			}
+
+			&:hover:before {
+				transform: scaleX(1);
+			}
+		}
+
+		textarea,
+		input[type="email"] {
+			width: 100%;
+			padding: 10px;
+			font-size: 16px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+
+		button {
+			font-size: 16px;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			margin-right: 10px;
+			cursor: pointer;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}

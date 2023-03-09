@@ -44,14 +44,18 @@ function App() {
 	/** Load teacher information initially, and if the storedTeacherId or storedToken changes */
 	useEffect(() => {
 		const loadTeacherInfo = async () => {
-			if (storedToken && storedTeacherId) {
-				Api.setToken(storedToken);
-				const teacher = await Api.getTeacher(storedTeacherId);
-				setCurrentTeacher(teacher);
-			} else {
-				setCurrentTeacher(null);
+			try {
+				if (storedToken && storedTeacherId) {
+					Api.setToken(storedToken);
+					const teacher = await Api.getTeacher(storedTeacherId);
+					setCurrentTeacher(teacher);
+				} else {
+					setCurrentTeacher(null);
+				}
+				setTeacherLoaded(true);
+			} catch (err) {
+				updateCredentials();
 			}
-			setTeacherLoaded(true);
 		};
 
 		loadTeacherInfo();
@@ -117,7 +121,7 @@ function App() {
 		history.push("/");
 	};
 
-	return (
+	return teacherLoaded ? (
 		<div className="app">
 			{/* Teacher Context */}
 			<TeacherContext.Provider
@@ -151,6 +155,8 @@ function App() {
 				</FlashContext.Provider>
 			</TeacherContext.Provider>
 		</div>
+	) : (
+		<p>Loading...</p>
 	);
 }
 

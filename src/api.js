@@ -68,6 +68,23 @@ class Api {
 		const res = await this.request(`students`, searchFilters);
 		return res.students;
 	}
+
+	/** Get a student by studentId */
+	static async getStudent(studentId) {
+		const res = await this.request(`students/${studentId}`);
+		return res.student;
+	}
+
+	/** Update a student's profile */
+	static async updateStudent({ id, name, email, description }) {
+		const data = {};
+		if (name !== undefined) data.name = name;
+		if (email !== undefined) data.email = email;
+		if (description !== undefined) data.description = description;
+
+		const res = await this.request(`students/${id}`, data, "patch");
+		return res.student;
+	}
 }
 
 export default Api;
