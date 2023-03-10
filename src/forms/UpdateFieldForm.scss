@@ -1,0 +1,81 @@
+// Import statements
+@import "../styles/colors";
+@import "../styles/variables";
+@import "../styles/mixins";
+
+// Styles for the UpdateFieldForm component
+.update-field {
+	// @include container;
+	@include tile;
+	position: relative;
+	margin: 10px;
+
+	.name {
+		margin: 0 0 10px 0;
+		font-size: 1.3em;
+	}
+	.label {
+		margin: 0 0 5px 0;
+		font-size: 1.1em;
+	}
+
+	.value {
+		margin: 0;
+	}
+
+	// Styles for the edit, cancel, and save buttons
+	.edit,
+	.cancel,
+	.save {
+		position: absolute;
+		top: 10px;
+		width: 30px;
+		height: 30px;
+		background-color: transparent;
+		box-shadow: 0px 2px 8px -1px rgba($darkest, 40%);
+		border: none;
+		border-radius: 50%;
+		color: $muted;
+		padding: 8px;
+		font-size: 16px;
+		@include flex(row, center, center);
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			background-color: $dark;
+			border: none;
+			color: $white;
+		}
+	}
+
+	.edit,
+	.cancel {
+		right: 10px;
+	}
+
+	.edit {
+		margin-left: 10px;
+
+		&:hover {
+			background-color: $muted;
+		}
+	}
+	.cancel {
+		margin-left: 10px;
+		color: $error;
+
+		&:hover {
+			background-color: $error;
+		}
+	}
+
+	.save {
+		right: 45px;
+		color: $accent;
+
+		&:hover {
+			background-color: $accent;
+		}
+	}
+}
