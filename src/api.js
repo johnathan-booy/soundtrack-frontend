@@ -85,6 +85,13 @@ class Api {
 		const res = await this.request(`students/${id}`, data, "patch");
 		return res.student;
 	}
+
+	/** Skill Levels */
+
+	static async getSkillLevels() {
+		const res = await this.request(`skill-levels`);
+		return res.skillLevels;
+	}
 }
 
 export default Api;

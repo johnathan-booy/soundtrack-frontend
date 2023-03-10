@@ -1,4 +1,6 @@
 @import "../styles/mixins";
+@import "../styles/colors";
+@import "../styles/variables";
 
 .student-details {
 	max-width: 800px;
@@ -6,12 +8,22 @@
 	padding: 20px;
 
 	header {
+		@include flex(row, center, center);
 		margin-bottom: 20px;
 
-		h1 {
-			font-size: 36px;
+		.name {
+			font-size: 2.1em;
 			font-weight: bold;
 			margin: 0;
+		}
+
+		.skill {
+			color: $white;
+			border-radius: $border-radius;
+			padding: 10px;
+			margin: 0 0 0 10px;
+			font-size: 1.1em;
+			font-weight: bold;
 		}
 	}
 

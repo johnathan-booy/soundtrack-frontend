@@ -5,7 +5,38 @@
 @import "../styles/variables";
 
 .student-list {
+	@include flex(column, center, center);
+
 	a {
-		margin-bottom: 10px;
+		margin: 5px;
+	}
+
+	.add {
+		margin: 5px;
+		display: inline-block;
+		text-align: center;
+		padding: 8px 22px;
+		background-color: $accent;
+		color: $white;
+		text-decoration: none;
+		font-size: 1.1em;
+		font-weight: bold;
+		border-radius: $border-radius;
+		border: none;
+		transition: all 0.2s ease-in-out;
+
+		&:hover {
+			background-color: darken($accent, 12%);
+			color: $white;
+			cursor: pointer;
+		}
+
+		&:active {
+			background-color: darken($accent, 6%);
+			transform: translateY(1.5px);
+		}
+		span {
+			margin-left: 8px;
+		}
 	}
 }

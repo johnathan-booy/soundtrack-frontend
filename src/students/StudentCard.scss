@@ -9,35 +9,72 @@
 	// Include mixins
 	@include tile;
 	@include container($base-width: 80%, $tablet-width: 90%, $max-width: 600px);
-	@include flex(column);
-
-	// Define grid layout for larger screens
-	@media (min-width: 600px) {
-		display: grid;
-		grid-template-columns: 1.5fr 1fr 0.5fr;
-		align-items: center;
-		gap: 1rem;
-	}
+	@include flex(row);
 
 	// Define text styles
 	color: $darkest;
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
+	overflow: hidden;
+	padding: 0;
+
+	.skill {
+		width: 25px;
+		transition: width 0.3s ease-in-out;
+		@include flex(row, center, center);
+
+		span {
+			white-space: nowrap;
+			display: none;
+			font-weight: bold;
+		}
+
+		clip-path: polygon(100% 0, 80% 100%, 0 100%, 0 0);
+	}
 
 	// Define hover styles
 	&:hover {
-		background-color: $accent-light;
+		background-color: $light;
 	}
 
-	// Define styles for child elements
-	.name {
-		font-family: $heading-font-family;
-		font-weight: bold;
-		font-size: 1.1em;
+	@media (min-width: 450px) {
+		&:hover {
+			.skill {
+				width: 125px;
+				text-align: left;
+
+				span {
+					padding: 0 45px 0 30px;
+					text-align: left;
+					display: inline-block;
+					color: white;
+				}
+			}
+		}
 	}
 
-	.email {
-		font-style: italic;
+	.info {
+		padding: 15px;
+
+		.name {
+			font-family: $heading-font-family;
+			font-weight: bold;
+			font-size: 1.1em;
+		}
+
+		.email {
+			font-style: italic;
+
+			@media (min-width: 600px) {
+				text-align: right;
+			}
+		}
+
+		@media (min-width: 600px) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			width: 100%;
+		}
 	}
 
 	// Define alignment for skill element on larger screens

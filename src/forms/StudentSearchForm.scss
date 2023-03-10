@@ -4,6 +4,6 @@
 
 .student-search-form {
 	@include container($base-width: 80%, $tablet-width: 90%, $max-width: 600px);
-	margin-bottom: 20px;
+	margin: 5px;
 	box-shadow: $subtle-box-shadow;
 }

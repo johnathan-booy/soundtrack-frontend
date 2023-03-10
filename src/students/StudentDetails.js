@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../api";
+import SkillLevelContext from "../contexts/SkillLevelContext";
 import FormFields from "../forms/FormFields";
 import UpdateFieldForm from "../forms/UpdateFieldForm";
 import "./StudentDetails.scss";
@@ -8,6 +9,8 @@ import "./StudentDetails.scss";
 function StudentDetails() {
 	const { studentId } = useParams();
 	const [student, setStudent] = useState(null);
+	const [skillLevel, setSkillLevel] = useState();
+	const getSkillLevelById = useContext(SkillLevelContext);
 
 	const aboutField =
 		student &&
@@ -19,10 +22,19 @@ function StudentDetails() {
 		const getStudent = async () => {
 			const student = await Api.getStudent(studentId);
 			setStudent(student);
-			console.log(student);
 		};
 		getStudent();
 	}, [studentId]);
+
+	useEffect(() => {
+		const getSkillLevel = async () => {
+			const skillLevel = getSkillLevelById(student.skillLevelId);
+			setSkillLevel(skillLevel);
+		};
+		if (student) {
+			getSkillLevel();
+		}
+	}, [student]);
 
 	const update = async (data) => {
 		const updatedStudent = await Api.updateStudent({
@@ -35,7 +47,12 @@ function StudentDetails() {
 	return student ? (
 		<section className="student-details">
 			<header>
-				<h1>{student.name}</h1>
+				<h1 className="name">{student.name}</h1>
+				{skillLevel && (
+					<div className="skill" style={{ backgroundColor: skillLevel.color }}>
+						{skillLevel.name}
+					</div>
+				)}
 			</header>
 			<UpdateFieldForm key="about" fields={aboutField} update={update} />
 			<UpdateFieldForm key="email" fields={emailField} update={update} />

@@ -11,6 +11,8 @@ import Routes from "./navigation/Routes";
 import Sidebar from "./navigation/Sidebar";
 import Api from "./api";
 import "./App.scss";
+import SkillLevelContext from "./contexts/SkillLevelContext";
+import useSkillLevels from "./hooks/useSkillLevels";
 
 function App() {
 	/** useFlashMessages to display user warnings */
@@ -121,9 +123,11 @@ function App() {
 		history.push("/");
 	};
 
+	/** Skill Levels */
+	const { getSkillLevelById } = useSkillLevels();
+
 	return teacherLoaded ? (
 		<div className="app">
-			{/* Teacher Context */}
 			<TeacherContext.Provider
 				value={{ login, register, updateTeacher, currentTeacher }}
 			>
@@ -142,15 +146,16 @@ function App() {
 					<div className="backdrop" onClick={toggleSidebar}></div>
 				)}
 
-				{/* Flash Context */}
 				<FlashContext.Provider value={{ flashMessages, addFlashMessage }}>
 					{/* Main Content */}
 					<main className={`main-content`}>
 						{/* Flash Messages */}
 						<FlashMessages />
 
-						{/* Routes */}
-						<Routes />
+						<SkillLevelContext.Provider value={getSkillLevelById}>
+							{/* Routes */}
+							<Routes />
+						</SkillLevelContext.Provider>
 					</main>
 				</FlashContext.Provider>
 			</TeacherContext.Provider>
