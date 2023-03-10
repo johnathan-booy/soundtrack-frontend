@@ -123,13 +123,29 @@ function App() {
 		history.push("/");
 	};
 
+	/** Add Student */
+	const addStudent = async ({ name, email, description, skillLevelId }) => {
+		try {
+			const student = await Api.addStudent({
+				name,
+				email,
+				description,
+				skillLevelId,
+				teacherId: currentTeacher.id,
+			});
+			history.push(`/students/${student.id}`);
+		} catch (err) {
+			addFlashMessage("danger", err);
+		}
+	};
+
 	/** Skill Levels */
-	const { getSkillLevelById } = useSkillLevels();
+	const { skillLevels, getSkillLevelById } = useSkillLevels();
 
 	return teacherLoaded ? (
 		<div className="app">
 			<TeacherContext.Provider
-				value={{ login, register, updateTeacher, currentTeacher }}
+				value={{ login, register, updateTeacher, addStudent, currentTeacher }}
 			>
 				{/* Header */}
 				<Header toggleSidebar={toggleSidebar} />
@@ -152,7 +168,9 @@ function App() {
 						{/* Flash Messages */}
 						<FlashMessages />
 
-						<SkillLevelContext.Provider value={getSkillLevelById}>
+						<SkillLevelContext.Provider
+							value={{ getSkillLevelById, skillLevels }}
+						>
 							{/* Routes */}
 							<Routes />
 						</SkillLevelContext.Provider>

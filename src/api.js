@@ -75,6 +75,22 @@ class Api {
 		return res.student;
 	}
 
+	/** Add a new student */
+	static async addStudent({
+		name,
+		email,
+		teacherId,
+		skillLevelId,
+		description,
+	}) {
+		const body = { name, email, description, teacherId };
+		if (skillLevelId) {
+			body.skillLevelId = skillLevelId;
+		}
+		const res = await this.request("students", body, "post");
+		return res.student;
+	}
+
 	/** Update a student's profile */
 	static async updateStudent({ id, name, email, description }) {
 		const data = {};

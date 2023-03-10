@@ -27,6 +27,8 @@ class FormFields {
 		return orderedFields;
 	}
 
+	/** Get list of skillLevels */
+
 	/**
 	 * An array of field objects that describe the fields used in a form with Formik and Yup validation.
 	 *

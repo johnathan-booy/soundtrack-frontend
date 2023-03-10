@@ -2,19 +2,43 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
-import FormFields from "./FormFields";
+import formValidators from "./formValidators";
 
 function RegisterForm() {
 	// Get the register function from the TeacherContext
 	const { register } = useContext(TeacherContext);
 
-	// Define the form fields with default values
-	const fields = FormFields.getFields([
-		{ name: "name", value: "Johnathan Booy" },
-		{ name: "email", value: `${Math.random()}@gmail.com` },
-		{ name: "password", value: "password" },
-		{ name: "description", value: "This is a description" },
-	]);
+	const fields = [
+		{
+			name: "name",
+			label: "Name",
+			type: "text",
+			initialValue: "Johnathan Booy",
+			validation: formValidators.name,
+		},
+		{
+			name: "email",
+			label: "Email",
+			type: "email",
+			initialValue: "johndoe@example.com",
+			validation: formValidators.email,
+		},
+		{
+			name: "password",
+			label: "Password",
+			type: "password",
+			initialValue: "password",
+			validation: formValidators.password,
+		},
+
+		{
+			name: "description",
+			label: "Description",
+			type: "textarea",
+			initialValue: "This is a description.",
+			validation: formValidators.description,
+		},
+	];
 
 	// Define the function to be called when the form is submitted
 	const handleSubmit = async (values) => {

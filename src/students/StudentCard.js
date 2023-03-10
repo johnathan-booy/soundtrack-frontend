@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import SkillLevelContext from "../contexts/SkillLevelContext";
 import "./StudentCard.scss";
 
 function StudentCard({ id, name, email, skillLevel }) {

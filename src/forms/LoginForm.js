@@ -2,17 +2,29 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
-import FormFields from "./FormFields";
+import formValidators from "./formValidators";
 
 function LoginForm() {
 	// Get the login function from the TeacherContext
 	const { login } = useContext(TeacherContext);
 
 	// Define the form fields with default values
-	const fields = FormFields.getFields([
-		{ name: "email", value: "johndoe@example.com" },
-		{ name: "password", value: "password" },
-	]);
+	const fields = [
+		{
+			name: "email",
+			label: "Email",
+			type: "email",
+			initialValue: "johndoe@example.com",
+			validation: formValidators.email,
+		},
+		{
+			name: "password",
+			label: "Password",
+			type: "password",
+			initialValue: "password",
+			validation: formValidators.password,
+		},
+	];
 
 	// Define the function to be called when the form is submitted
 	const handleSubmit = async (values) => {

@@ -13,7 +13,12 @@ function StudentSearchForm({ searchByName }) {
 	};
 
 	return (
-		<form className="student-search-form">
+		<form
+			className="student-search-form"
+			onSubmit={(event) => {
+				event.preventDefault();
+			}}
+		>
 			<div className="form-group">
 				<input
 					className="form-input"

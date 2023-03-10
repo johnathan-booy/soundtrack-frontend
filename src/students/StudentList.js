@@ -13,7 +13,7 @@ function StudentList() {
 	const [students, setStudents] = useState([]);
 	const [name, setName] = useState("");
 	const { currentTeacher } = useContext(TeacherContext);
-	const getSkillLevelById = useContext(SkillLevelContext);
+	const { getSkillLevelById } = useContext(SkillLevelContext);
 
 	useEffect(() => {
 		const getStudents = async () => {

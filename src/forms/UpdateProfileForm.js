@@ -1,18 +1,34 @@
 import React, { useContext } from "react";
 import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
-import FormFields from "./FormFields";
+import formValidators from "./formValidators";
 
 function UpdateProfileForm() {
-	// Get the updateTeacher function from the TeacherContext
-	const { updateTeacher, currentTeacher } = useContext(TeacherContext);
+	const { updateTeacher } = useContext(TeacherContext);
 
-	// Define the form fields with default values
-	const fields = FormFields.getFields([
-		{ name: "name", value: currentTeacher.name },
-		{ name: "email", value: currentTeacher.email },
-		{ name: "description", value: currentTeacher.description },
-	]);
+	const fields = [
+		{
+			name: "name",
+			label: "Name",
+			type: "text",
+			initialValue: "Johnathan Booy",
+			validation: formValidators.name,
+		},
+		{
+			name: "email",
+			label: "Email",
+			type: "email",
+			initialValue: "johndoe@example.com",
+			validation: formValidators.email,
+		},
+		{
+			name: "description",
+			label: "Description",
+			type: "textarea",
+			initialValue: "This is a description.",
+			validation: formValidators.description,
+		},
+	];
 
 	// Define the function to be called when the form is submitted
 	const handleSubmit = async (values) => {

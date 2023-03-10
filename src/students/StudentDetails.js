@@ -10,7 +10,7 @@ function StudentDetails() {
 	const { studentId } = useParams();
 	const [student, setStudent] = useState(null);
 	const [skillLevel, setSkillLevel] = useState();
-	const getSkillLevelById = useContext(SkillLevelContext);
+	const { getSkillLevelById } = useContext(SkillLevelContext);
 
 	const aboutField =
 		student &&
@@ -34,7 +34,7 @@ function StudentDetails() {
 		if (student) {
 			getSkillLevel();
 		}
-	}, [student]);
+	}, [student, getSkillLevelById]);
 
 	const update = async (data) => {
 		const updatedStudent = await Api.updateStudent({
@@ -48,7 +48,7 @@ function StudentDetails() {
 		<section className="student-details">
 			<header>
 				<h1 className="name">{student.name}</h1>
-				{skillLevel && (
+				{skillLevel && skillLevel.name !== "" && (
 					<div className="skill" style={{ backgroundColor: skillLevel.color }}>
 						{skillLevel.name}
 					</div>
