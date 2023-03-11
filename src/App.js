@@ -76,7 +76,7 @@ function App() {
 			const { token, teacherId } = await Api.login({ email, password });
 			updateCredentials(teacherId, token);
 			addFlashMessage("success", `👋 Welcome back!`);
-			history.push("/");
+			history.push("/students");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
@@ -93,7 +93,7 @@ function App() {
 			});
 			addFlashMessage("success", `👋 Welcome to SoundTrack Academy!`);
 			updateCredentials(teacherId, token);
-			history.push("/");
+			history.push("/students");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
@@ -110,7 +110,7 @@ function App() {
 			});
 			addFlashMessage("success", `✅ Your profile has been updated!`);
 			setCurrentTeacher(teacher);
-			history.push("/");
+			history.push("/students");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
@@ -120,7 +120,7 @@ function App() {
 	const logout = () => {
 		updateCredentials();
 		addFlashMessage("success", `👋 See you later!`);
-		history.push("/");
+		history.push("/login");
 	};
 
 	/** Add Student */

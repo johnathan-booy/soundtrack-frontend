@@ -32,11 +32,24 @@
 		}
 	}
 
+	.lessons {
+		@include flex(column, center, center);
+		padding: 20px 0 0 0;
+		width: 100%;
+		h2 {
+			margin: 0 0 10px;
+			font-size: 1.5em;
+		}
+
+		.add-lesson {
+			@include slidingIconButton($accent, $white);
+			margin-bottom: 10px;
+		}
+	}
 	.delete-button {
-		@include slidingIconButton($error, $white, $width: 135px);
+		@include slidingIconButton($error, $white, $width: 210px);
 		margin-top: 20px;
 	}
-
 	.delete-dialog {
 		@include tile;
 		width: 100%;

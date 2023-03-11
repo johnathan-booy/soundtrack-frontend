@@ -106,6 +106,58 @@ class Api {
 		await this.request(`students/${id}`, {}, "delete");
 	}
 
+	/** Get a student by studentId */
+	static async getStudentLessons(studentId) {
+		const res = await this.request(`students/${studentId}/lessons`);
+		return res.lessons;
+	}
+
+	/** Add a new student */
+	static async addStudent({
+		name,
+		email,
+		teacherId,
+		skillLevelId,
+		description,
+	}) {
+		const body = { name, email, description, teacherId };
+		if (skillLevelId) {
+			body.skillLevelId = skillLevelId;
+		}
+		const res = await this.request("students", body, "post");
+		return res.student;
+	}
+
+	/** Lessons */
+
+	/** Add a new lesson */
+	static async addLesson({ studentId, teacherId, notes, date }) {
+		const body = { studentId: +studentId, teacherId, notes };
+
+		if (date) {
+			body.date = date;
+		}
+		const res = await this.request("lessons", body, "post");
+		return res.lesson;
+	}
+
+	/** Update a lesson */
+	static async updateLesson({ id, studentId, teacherId, notes, date }) {
+		const data = {};
+		if (studentId !== undefined) data.studentId = +studentId;
+		if (teacherId !== undefined) data.teacherId = teacherId;
+		if (notes !== undefined) data.notes = notes;
+		if (date !== undefined) data.date = date;
+
+		const res = await this.request(`lessons/${id}`, data, "patch");
+		return res.lesson;
+	}
+
+	/** Delete a lesson */
+	static async deleteLesson(id) {
+		await this.request(`lessons/${id}`, {}, "delete");
+	}
+
 	/** Skill Levels */
 
 	static async getSkillLevels() {

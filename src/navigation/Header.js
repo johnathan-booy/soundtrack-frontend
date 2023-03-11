@@ -5,9 +5,7 @@ import "./Header.scss";
 const Header = ({ toggleSidebar }) => {
 	return (
 		<header className="header">
-			<div className="logo">
-				<NavLink to="/">SoundTrack Academy</NavLink>
-			</div>
+			<div className="logo">SoundTrack Academy</div>
 			<button className="sidebar-toggle" onClick={toggleSidebar}>
 				<span></span>
 				<span></span>

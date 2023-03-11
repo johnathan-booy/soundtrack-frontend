@@ -25,58 +25,48 @@
 	}
 
 	// Styles for the edit, cancel, and save buttons
-	.edit,
-	.cancel,
-	.save {
+	.button-group {
 		position: absolute;
 		top: 10px;
-		width: 30px;
-		height: 30px;
-		background-color: transparent;
-		box-shadow: 0px 2px 8px -1px rgba($darkest, 40%);
-		border: none;
-		border-radius: 50%;
-		color: $muted;
-		padding: 8px;
-		font-size: 16px;
-		@include flex(row, center, center);
-		cursor: pointer;
-		transition: all 0.3s ease-in-out;
-
-		&:hover {
-			background-color: $dark;
-			border: none;
-			color: $white;
-		}
-	}
-
-	.edit,
-	.cancel {
 		right: 10px;
-	}
+		@include flex(row, flex-end, center);
 
-	.edit {
-		margin-left: 10px;
+		button {
+			height: 30px;
+			width: 30px;
+			background-color: transparent;
+			box-shadow: 0px 2px 8px -1px rgba($darkest, 40%);
+			border: none;
+			border-radius: 50%;
+			color: $muted;
+			padding: 8px;
+			margin-left: 8px;
 
-		&:hover {
-			background-color: $muted;
+			font-size: 16px;
+			@include flex(row, center, center);
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				background-color: $muted;
+				border: none;
+				color: $white;
+			}
 		}
-	}
-	.cancel {
-		margin-left: 10px;
-		color: $error;
 
-		&:hover {
-			background-color: $error;
+		.delete {
+			color: $error;
+
+			&:hover {
+				background-color: $error;
+			}
 		}
-	}
 
-	.save {
-		right: 45px;
-		color: $accent;
+		.save {
+			color: $accent;
 
-		&:hover {
-			background-color: $accent;
+			&:hover {
+				background-color: $accent;
+			}
 		}
 	}
 }

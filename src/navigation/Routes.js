@@ -4,8 +4,6 @@ import AddStudentForm from "../forms/AddStudentForm";
 import LoginForm from "../forms/LoginForm";
 import RegisterForm from "../forms/RegisterForm";
 import UpdateProfileForm from "../forms/UpdateProfileForm";
-import Homepage from "../homepage/Homepage";
-import LessonDetails from "../lessons/LessonDetails";
 import StudentDetails from "../students/StudentDetails";
 import StudentList from "../students/StudentList";
 import PrivateRoute from "./PrivateRoute";
@@ -13,9 +11,6 @@ import PrivateRoute from "./PrivateRoute";
 function Routes() {
 	return (
 		<Switch>
-			<Route exact path="/">
-				<Homepage />
-			</Route>
 			<PrivateRoute exact path="/students">
 				<StudentList />
 			</PrivateRoute>
@@ -24,9 +19,6 @@ function Routes() {
 			</PrivateRoute>
 			<PrivateRoute path="/students/:studentId">
 				<StudentDetails />
-			</PrivateRoute>
-			<PrivateRoute path="/lessons/:lessonId">
-				<LessonDetails />
 			</PrivateRoute>
 			<Route exact path="/login">
 				<LoginForm />
@@ -37,7 +29,7 @@ function Routes() {
 			<PrivateRoute exact path="/update">
 				<UpdateProfileForm />
 			</PrivateRoute>
-			<Redirect to="/" />
+			<Redirect to="/students" />
 		</Switch>
 	);
 }
