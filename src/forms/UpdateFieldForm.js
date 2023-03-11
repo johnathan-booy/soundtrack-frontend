@@ -73,10 +73,10 @@ function UpdateFieldForm({ fields, fieldName, update, showLabels = true }) {
 						<FontAwesomeIcon icon={faPencil} />
 					</button>
 					{fields.map((field) => (
-						<>
+						<React.Fragment key={field.name}>
 							<h4 className="label">{field.label}</h4>
 							<p className="value">{field.initialValue}</p>
-						</>
+						</React.Fragment>
 					))}
 				</>
 			)}
