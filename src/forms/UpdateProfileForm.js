@@ -6,28 +6,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 function UpdateProfileForm() {
-	const { updateTeacher } = useContext(TeacherContext);
+	const { updateTeacher, currentTeacher } = useContext(TeacherContext);
 
 	const fields = [
 		{
 			name: "name",
 			label: "Name",
 			type: "text",
-			initialValue: "Johnathan Booy",
+			initialValue: currentTeacher.name,
 			validation: formValidators.name,
 		},
 		{
 			name: "email",
 			label: "Email",
 			type: "email",
-			initialValue: "johndoe@example.com",
+			initialValue: currentTeacher.email,
 			validation: formValidators.email,
 		},
 		{
 			name: "description",
 			label: "Description",
 			type: "textarea",
-			initialValue: "This is a description.",
+			initialValue: currentTeacher.description,
 			validation: formValidators.description,
 		},
 	];
