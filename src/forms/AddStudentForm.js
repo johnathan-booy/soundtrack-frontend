@@ -3,6 +3,8 @@ import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
 import formValidators from "./formValidators";
 import SkillLevelContext from "../contexts/SkillLevelContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function AddStudentForm() {
 	// Get the register function from the TeacherContext
@@ -65,7 +67,8 @@ function AddStudentForm() {
 			<GenericForm
 				fields={fields}
 				handleSubmit={handleSubmit}
-				submitName="Add Student"
+				submitName="Add"
+				submitIcon={<FontAwesomeIcon icon={faPlus} />}
 			/>
 		</section>
 	);

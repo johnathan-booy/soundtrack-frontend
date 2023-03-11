@@ -3,7 +3,13 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./Form.scss";
 
-function GenericForm({ fields, handleSubmit, submitName, children }) {
+function GenericForm({
+	fields,
+	handleSubmit,
+	submitName,
+	submitIcon,
+	children,
+}) {
 	const initialValues = Object.fromEntries(
 		fields.map((field) => [field.name, field.initialValue])
 	);
@@ -57,7 +63,8 @@ function GenericForm({ fields, handleSubmit, submitName, children }) {
 				{children}
 
 				<button className="form-button" type="submit">
-					{submitName}
+					{submitIcon}
+					<span>{submitName}</span>
 				</button>
 			</Form>
 		</Formik>

@@ -36,3 +36,79 @@
 		width: $base-width;
 	}
 }
+
+@mixin slidingIconButton(
+	$background-color,
+	$text-color,
+	$height: 45px,
+	$width: 190px
+) {
+	@include simpleButton($background-color, $text-color, $height, $width);
+
+	svg {
+		position: absolute;
+		width: calc((#{$width}/ 4));
+		top: 50%;
+		left: calc((#{$width}/ 4));
+		transform: translate(-90%, -50%);
+		transition: all 0.2s ease-in-out;
+	}
+
+	span {
+		position: absolute;
+		top: 50%;
+		width: calc((#{$width}/ 4) * 3);
+		left: calc((#{$width}/ 4));
+		transform: translate(5%, -50%);
+		transition: all 0.2s ease-in-out;
+		text-align: center;
+		padding-right: 15px;
+		border-left: 0.5px solid $text-color;
+	}
+
+	&:hover {
+		svg {
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		span {
+			left: calc(#{$width});
+			border-left: none;
+			padding-left: 0;
+		}
+	}
+}
+
+@mixin simpleButton(
+	$background-color,
+	$text-color,
+	$height: 45px,
+	$width: 120px
+) {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	height: $height;
+	width: $width;
+	padding: 0;
+	background-color: $background-color;
+	color: $text-color;
+	text-decoration: none;
+	font-size: 1.1em;
+	font-weight: bold;
+	border-radius: $border-radius;
+	border: none;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		background-color: darken($background-color, 10%);
+		color: $text-color;
+		cursor: pointer;
+	}
+
+	&:active {
+		background-color: darken($background-color, 6%);
+		transform: translateY(1.5px);
+	}
+}

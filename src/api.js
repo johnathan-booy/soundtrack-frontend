@@ -101,6 +101,10 @@ class Api {
 		const res = await this.request(`students/${id}`, data, "patch");
 		return res.student;
 	}
+	/** Delete a student's profile */
+	static async deleteStudent(id) {
+		await this.request(`students/${id}`, {}, "delete");
+	}
 
 	/** Skill Levels */
 

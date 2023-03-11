@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
 import formValidators from "./formValidators";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 function RegisterForm() {
 	// Get the register function from the TeacherContext
@@ -59,6 +61,7 @@ function RegisterForm() {
 				fields={fields}
 				handleSubmit={handleSubmit}
 				submitName="Register"
+				submitIcon={<FontAwesomeIcon icon={faUserPlus} />}
 			/>
 		</section>
 	);

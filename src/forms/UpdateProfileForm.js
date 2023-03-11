@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
 import formValidators from "./formValidators";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 function UpdateProfileForm() {
 	const { updateTeacher } = useContext(TeacherContext);
@@ -46,6 +48,7 @@ function UpdateProfileForm() {
 				fields={fields}
 				handleSubmit={handleSubmit}
 				submitName="Update"
+				submitIcon={<FontAwesomeIcon icon={faEdit} />}
 			/>
 		</section>
 	);

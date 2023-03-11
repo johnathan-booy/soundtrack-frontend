@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import TeacherContext from "../contexts/TeacherContext";
 import GenericForm from "./GenericForm";
 import formValidators from "./formValidators";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 
 function LoginForm() {
 	// Get the login function from the TeacherContext
@@ -45,6 +47,7 @@ function LoginForm() {
 				fields={fields}
 				handleSubmit={handleSubmit}
 				submitName="Log in"
+				submitIcon={<FontAwesomeIcon icon={faSignIn} />}
 			/>
 		</section>
 	);
