@@ -43,6 +43,13 @@ function App() {
 	const [storedToken, setStoredToken] = useLocalStorage("authToken");
 	const [storedTeacherId, setStoredTeacherId] = useLocalStorage("teacherId");
 
+	/** Update authentication credentials */
+	const updateCredentials = (teacherId = null, token = null) => {
+		Api.setToken(token);
+		setStoredToken(token);
+		setStoredTeacherId(teacherId);
+	};
+
 	/** Load teacher information initially, and if the storedTeacherId or storedToken changes */
 	useEffect(() => {
 		const loadTeacherInfo = async () => {
@@ -62,13 +69,6 @@ function App() {
 
 		loadTeacherInfo();
 	}, [storedTeacherId, storedToken]);
-
-	/** Update authentication credentials */
-	const updateCredentials = (teacherId = null, token = null) => {
-		Api.setToken(token);
-		setStoredToken(token);
-		setStoredTeacherId(teacherId);
-	};
 
 	/** Log in an existing teacher */
 	const login = async ({ email, password }) => {

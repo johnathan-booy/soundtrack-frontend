@@ -112,22 +112,6 @@ class Api {
 		return res.lessons;
 	}
 
-	/** Add a new student */
-	static async addStudent({
-		name,
-		email,
-		teacherId,
-		skillLevelId,
-		description,
-	}) {
-		const body = { name, email, description, teacherId };
-		if (skillLevelId) {
-			body.skillLevelId = skillLevelId;
-		}
-		const res = await this.request("students", body, "post");
-		return res.student;
-	}
-
 	/** Lessons */
 
 	/** Add a new lesson */
