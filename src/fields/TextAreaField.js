@@ -1,7 +1,6 @@
 import React from "react";
 import { Field, useField } from "formik";
 import { v4 as uuid } from "uuid";
-import { tuple } from "yup";
 
 /**
  * A form field component for a text area that uses Formik's `useField` hook

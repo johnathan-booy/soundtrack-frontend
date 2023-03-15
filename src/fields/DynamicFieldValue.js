@@ -9,9 +9,8 @@ import React from "react";
  */
 function DynamicFieldValue({ field, showLabel }) {
 	return (
-		<React.Fragment key={field.name}>
+		<div className="field-value-group">
 			{showLabel && <h4 className="label">{field.label}</h4>}
-
 			{field.type !== "richtext" ? (
 				<p className="value">{field.initialValue}</p>
 			) : (
@@ -20,7 +19,7 @@ function DynamicFieldValue({ field, showLabel }) {
 					dangerouslySetInnerHTML={{ __html: field.initialValue }}
 				></div>
 			)}
-		</React.Fragment>
+		</div>
 	);
 }
 

@@ -8,12 +8,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./FormButtons.scss";
 
-function FormButtons({ editMode, toggleEditMode, onDeleteClick }) {
+function FormButtons({
+	editMode,
+	toggleEditMode,
+	onDeleteClick,
+	onSubmitClick,
+}) {
 	return (
 		<div className="form-buttons">
 			{editMode ? (
 				<>
-					<button type="submit" className="save">
+					<button className="save" onClick={onSubmitClick}>
 						<FontAwesomeIcon icon={faCheck} />
 					</button>
 					<button className="cancel" onClick={toggleEditMode}>

@@ -1,11 +1,12 @@
 import { Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import * as Yup from "yup";
 import "./DynamicUpdateForm.scss";
 import DynamicField from "../fields/DynamicField";
 import DeleteDialog from "../common/DeleteDialog";
 import FormButtons from "./FormButtons";
 import DynamicFieldValue from "../fields/DynamicFieldValue";
+import { v4 as uuid } from "uuid";
 
 function DynamicUpdateForm({
 	fields,
@@ -28,9 +29,17 @@ function DynamicUpdateForm({
 		setEditMode(!editMode);
 	};
 
-	const handleSubmit = (data) => {
-		update(data);
+	// Handle submit, clicked outside of form
+	const formikRef = useRef();
+
+	const handleSubmit = (values, { setSubmitting }) => {
+		setSubmitting(false);
+		update(values);
 		toggleEditMode();
+	};
+
+	const onSubmitClick = () => {
+		formikRef.current.submitForm();
 	};
 
 	// Handle delete click
@@ -58,37 +67,37 @@ function DynamicUpdateForm({
 			) : (
 				<div className="dynamic-update-form">
 					{formName && <h3 className="name">{formName}</h3>}
+					<FormButtons
+						editMode={editMode}
+						toggleEditMode={toggleEditMode}
+						onDeleteClick={deleteResource ? handleDelete : null}
+						onSubmitClick={onSubmitClick}
+					/>
 					{editMode ? (
 						<Formik
 							initialValues={initialValues}
 							validationSchema={validationSchema}
 							onSubmit={handleSubmit}
+							innerRef={formikRef}
 						>
 							<Form className="form">
 								{fields.map((field) => (
 									<DynamicField
-										key={field.name}
+										key={uuid()}
 										{...field}
 										showLabel={showLabels}
 									/>
 								))}
-								<FormButtons
-									editMode={editMode}
-									toggleEditMode={toggleEditMode}
-									onDeleteClick={handleDelete}
-								/>
 							</Form>
 						</Formik>
 					) : (
 						<>
-							<FormButtons
-								editMode={editMode}
-								toggleEditMode={toggleEditMode}
-								onDeleteClick={handleDelete}
-							/>
-
 							{fields.map((field) => (
-								<DynamicFieldValue field={field} showLabel={showLabels} />
+								<DynamicFieldValue
+									field={field}
+									showLabel={showLabels}
+									key={uuid()}
+								/>
 							))}
 						</>
 					)}
