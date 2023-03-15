@@ -45,9 +45,9 @@ function App() {
 
 	/** Update authentication credentials */
 	const updateCredentials = (teacherId = null, token = null) => {
-		Api.setToken(token);
 		setStoredToken(token);
 		setStoredTeacherId(teacherId);
+		Api.setToken(token);
 	};
 
 	/** Load teacher information initially, and if the storedTeacherId or storedToken changes */
@@ -58,8 +58,10 @@ function App() {
 					Api.setToken(storedToken);
 					const teacher = await Api.getTeacher(storedTeacherId);
 					setCurrentTeacher(teacher);
+					history.push("/students");
 				} else {
 					setCurrentTeacher(null);
+					history.push("/login");
 				}
 				setTeacherLoaded(true);
 			} catch (err) {
@@ -76,7 +78,6 @@ function App() {
 			const { token, teacherId } = await Api.login({ email, password });
 			updateCredentials(teacherId, token);
 			addFlashMessage("success", `👋 Welcome back!`);
-			history.push("/students");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
@@ -93,7 +94,6 @@ function App() {
 			});
 			addFlashMessage("success", `👋 Welcome to SoundTrack Academy!`);
 			updateCredentials(teacherId, token);
-			history.push("/students");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
@@ -110,7 +110,6 @@ function App() {
 			});
 			addFlashMessage("success", `✅ Your profile has been updated!`);
 			setCurrentTeacher(teacher);
-			history.push("/students");
 		} catch (err) {
 			addFlashMessage("danger", err);
 		}
@@ -118,9 +117,9 @@ function App() {
 
 	/** Log out currentTeacher */
 	const logout = () => {
+		setTeacherLoaded(false);
 		updateCredentials();
 		addFlashMessage("success", `👋 See you later!`);
-		history.push("/login");
 	};
 
 	/** Add Student */
