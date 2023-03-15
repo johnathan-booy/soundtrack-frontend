@@ -1,0 +1,23 @@
+// Import statements
+@import "../styles/colors";
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.delete-dialog {
+	@include tile;
+	width: 100%;
+	@include flex(column, center, center);
+	p {
+		margin: 0;
+	}
+	.buttons {
+		margin: 15px 0 0 0;
+		.yes {
+			@include simpleButton($error, $white, $width: 80px, $height: 40px);
+			margin-right: 7px;
+		}
+		.no {
+			@include simpleButton($neutral, $white, $width: 80px, $height: 40px);
+		}
+	}
+}

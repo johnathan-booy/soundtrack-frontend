@@ -1,5 +1,9 @@
 import * as Yup from "yup";
 
+/**
+ * An object containing validation schema for form fields using Yup.
+ * @typedef {Object} formValidators
+ */
 const formValidators = {
 	name: Yup.string()
 		.min(2, "Name must be at least 2 characters long")

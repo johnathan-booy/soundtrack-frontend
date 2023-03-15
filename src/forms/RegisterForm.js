@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import TeacherContext from "../contexts/TeacherContext";
-import GenericForm from "./GenericForm";
+import DynamicForm from "./DynamicForm";
 import formValidators from "./formValidators";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * A form component for registering a new student
+ * @returns {JSX.Element} - A React component.
+ */
 function RegisterForm() {
 	// Get the register function from the TeacherContext
 	const { register } = useContext(TeacherContext);
@@ -57,7 +61,7 @@ function RegisterForm() {
 					Already have an account? <Link to="/login">Log in here!</Link>
 				</em>
 			</header>
-			<GenericForm
+			<DynamicForm
 				fields={fields}
 				handleSubmit={handleSubmit}
 				submitName="Register"

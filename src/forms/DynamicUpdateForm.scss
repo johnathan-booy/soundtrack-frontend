@@ -1,0 +1,48 @@
+// Import statements
+@import "../styles/colors";
+@import "../styles/variables";
+@import "../styles/mixins";
+@import "../styles/typography";
+
+// Styles for the DynamicUpdateForm component
+.dynamic-update-form {
+	// @include container;
+	@include tile;
+	position: relative;
+	margin: 10px;
+	width: 100%;
+
+	.name {
+		margin: 0 0 10px 0;
+		font-size: 1.3em;
+	}
+
+	.label {
+		margin: 0 0 5px 0;
+		font-size: 1.1em;
+	}
+
+	.value {
+		margin: 0;
+		padding: 10px;
+		font-size: 1em;
+
+		* {
+			margin: 0;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: $heading-font-family;
+		}
+
+		p,
+		strong,
+		em,
+		li {
+			font-family: $default-font-family;
+			font-size: inherit;
+		}
+	}
+}

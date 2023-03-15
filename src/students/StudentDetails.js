@@ -7,9 +7,10 @@ import Api from "../api";
 import SkillLevelContext from "../contexts/SkillLevelContext";
 import TeacherContext from "../contexts/TeacherContext";
 import formValidators from "../forms/formValidators";
-import UpdateFieldForm from "../forms/UpdateFieldForm";
+import DynamicUpdateForm from "../forms/DynamicUpdateForm";
 import { formatDate } from "../helpers/formatDate";
 import "./StudentDetails.scss";
+import DeleteDialog from "../common/DeleteDialog";
 
 // Function component
 function StudentDetails() {
@@ -41,7 +42,7 @@ function StudentDetails() {
 		{
 			name: "email",
 			label: "Email",
-			type: "email",
+			type: "text",
 			initialValue: student ? student.email : "",
 			validation: formValidators.email,
 		},
@@ -140,12 +141,16 @@ function StudentDetails() {
 					</div>
 				)}
 			</header>
-			<UpdateFieldForm
+			<DynamicUpdateForm
 				key="description"
 				fields={descriptionField}
 				update={updateStudent}
 			/>
-			<UpdateFieldForm key="email" fields={emailField} update={updateStudent} />
+			<DynamicUpdateForm
+				key="email"
+				fields={emailField}
+				update={updateStudent}
+			/>
 
 			<div className="lessons">
 				<h2 className="lesson">Lessons</h2>
@@ -160,34 +165,27 @@ function StudentDetails() {
 							{
 								name: "notes",
 								label: formatDate(date),
-								type: "textarea",
+								type: "richtext",
 								initialValue: notes,
 								validation: formValidators.description,
 							},
 						];
 						return (
-							<UpdateFieldForm
+							<DynamicUpdateForm
 								key={id}
 								fields={fields}
 								update={(data) => updateLesson({ id, ...data })}
-								deleteField={() => deleteLesson(id)}
+								deleteResource={() => deleteLesson(id)}
 							/>
 						);
 					})}
 			</div>
 
 			{showDeleteDialog ? (
-				<div className="delete-dialog">
-					<p>Are you sure you want to delete this student?</p>
-					<div className="buttons">
-						<button onClick={handleConfirmDelete} className="yes">
-							Yes
-						</button>
-						<button onClick={handleCancelDelete} className="no">
-							No
-						</button>
-					</div>
-				</div>
+				<DeleteDialog
+					onCancel={handleCancelDelete}
+					onConfirm={handleConfirmDelete}
+				/>
 			) : (
 				<button className="delete-button" onClick={handleDelete}>
 					<FontAwesomeIcon icon={faTrash} />

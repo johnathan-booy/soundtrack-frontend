@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import TeacherContext from "../contexts/TeacherContext";
-import GenericForm from "./GenericForm";
+import DynamicForm from "./DynamicForm";
 import formValidators from "./formValidators";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * A form component for logging in aa teacher
+ * @returns {JSX.Element} - A React component.
+ */
 function LoginForm() {
 	// Get the login function from the TeacherContext
 	const { login } = useContext(TeacherContext);
@@ -43,7 +47,7 @@ function LoginForm() {
 					Don't have an account? <Link to="/register">Register here!</Link>
 				</em>
 			</header>
-			<GenericForm
+			<DynamicForm
 				fields={fields}
 				handleSubmit={handleSubmit}
 				submitName="Log in"

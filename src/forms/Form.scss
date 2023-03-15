@@ -33,14 +33,14 @@
 		margin-bottom: 0;
 	}
 
-	.form-label {
+	.label {
 		font-weight: 600;
 		font-size: 1.1em;
 		margin-bottom: 5px;
 		font-family: $heading-font-family;
 	}
 
-	.form-input {
+	.input {
 		width: 100%;
 		padding: 10px;
 		font-size: 1em;
@@ -54,11 +54,34 @@
 		}
 	}
 
-	textarea {
+	.textarea {
 		height: 180px;
 	}
 
-	.form-error {
+	.quill {
+		border-radius: $border-radius;
+		width: 100%;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+
+		&:focus {
+			outline: none;
+			border-color: $accent;
+			box-shadow: $accent-alpha 0px 7px 29px 0px;
+		}
+
+		.ql-toolbar {
+			border: none;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+			@include flex(row, center, center);
+		}
+
+		.ql-container {
+			border: none;
+		}
+	}
+
+	.error {
 		color: $error;
 		font-size: 0.9em;
 		margin-top: 3px;

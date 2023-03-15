@@ -1,24 +1,30 @@
 import React, { useContext } from "react";
 import TeacherContext from "../contexts/TeacherContext";
-import GenericForm from "./GenericForm";
+import DynamicForm from "./DynamicForm";
 import formValidators from "./formValidators";
 import SkillLevelContext from "../contexts/SkillLevelContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * A form component for adding a new student.
+ * @returns {JSX.Element} - A React component.
+ */
 function AddStudentForm() {
 	// Get the register function from the TeacherContext
 	const { addStudent } = useContext(TeacherContext);
-	const { skillLevels } = useContext(SkillLevelContext);
 
+	// Get the skill levels from the SkillLevelContext and map them to an array of objects with value and name properties
+	const { skillLevels } = useContext(SkillLevelContext);
 	const skillLevelOptions = [
-		{ value: null, name: "Unsure" }, // add this option
+		{ value: null, name: "Unsure" }, // Add a default option
 		...Object.entries(skillLevels).map(([id, level]) => ({
 			value: id,
 			name: level.name,
 		})),
 	];
 
+	// Define the form fields with initial values and validation schema
 	const fields = [
 		{
 			name: "name",
@@ -52,7 +58,6 @@ function AddStudentForm() {
 
 	// Define the function to be called when the form is submitted
 	const handleSubmit = async (values) => {
-		console.log("handleSubmit values", values);
 		let { name, email, description, skillLevelId } = values;
 		skillLevelId = parseInt(skillLevelId);
 		await addStudent({ name, email, description, skillLevelId });
@@ -64,7 +69,7 @@ function AddStudentForm() {
 			<header>
 				<h1>Add Student</h1>
 			</header>
-			<GenericForm
+			<DynamicForm
 				fields={fields}
 				handleSubmit={handleSubmit}
 				submitName="Add"
